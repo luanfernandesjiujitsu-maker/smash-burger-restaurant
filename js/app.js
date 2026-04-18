@@ -5,12 +5,12 @@
  */
 const SITE_CONFIG = {
   brand: {
-    name: "SMASH & CO",
-    tagline: "Apaixonados desde 1987",
-    description: "Hambúrgueres smash artesanais feitos com amor, fogo e obsessão.",
+    name: "template.burguer",
+    tagline: "Qualidade em cada smash",
+    description: "Os melhores hambúrgueres artesanais feitos com paixão.",
     phone: "+55 (11) 99999-9999",
-    email: "ola@smashandco.com.br",
-    address: "Rua das Chamas, 42 - Bela Vista, São Paulo - SP",
+    email: "contato@templateburguer.com.br",
+    address: "Seu Endereço Aqui - Sua Cidade",
     hours: "Seg–Dom: 11h – 23h",
     social: {
       instagram: "#",

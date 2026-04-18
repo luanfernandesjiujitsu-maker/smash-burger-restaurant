@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Produto — Smash & Co</title>
+  <title>Produto — template.burguer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="css/tokens.css"/>
@@ -19,7 +19,7 @@
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo">
         <div class="navbar__logo-icon">🍔</div>
-        <span>SMASH&nbsp;<em style="color:var(--color-accent);">&</em>&nbsp;CO</span>
+        <span>template.burguer</span>
       </a>
       <ul class="navbar__links">
         <li><a href="index.html"   class="navbar__link">Início</a></li>
@@ -148,7 +148,7 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__bottom" style="padding-block:var(--space-8);">
-      <span>© 2025 Smash & Co. All rights reserved.</span>
+      <span>© 2025 template.burguer. All rights reserved.</span>
       <a href="pages/menu.html" style="color:var(--color-accent);">← Voltar ao Cardápio</a>
     </div>
   </div>
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function renderProduto(item) {
-  document.title = `${item.name} — Smash & Co`;
+  document.title = `${item.name} — template.burguer`;
   document.getElementById("breadcrumb-name").textContent = item.name;
   document.getElementById("product-name").textContent = item.name;
   document.getElementById("product-desc").textContent = item.description;
