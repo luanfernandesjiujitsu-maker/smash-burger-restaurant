@@ -1,0 +1,87 @@
+/* ============================================================
+   DESIGN TOKENS — Edit here to rebrand for any food business
+   ============================================================ */
+:root {
+  /* Brand Colors */
+  --color-primary:     #C8330A;   /* Chili Red */
+  --color-primary-dark:#9E2808;
+  --color-accent:      #F5A623;   /* Golden Yellow */
+  --color-accent-dark: #D4871A;
+  --color-bg:          #0E0C0A;   /* Near Black */
+  --color-bg-2:        #1A1510;   /* Card BG */
+  --color-bg-3:        #231C14;   /* Section Alt */
+  --color-surface:     #2A2018;   /* Elevated */
+  --color-text:        #F0EBE3;   /* Warm White */
+  --color-text-muted:  #A89880;
+  --color-text-faint:  #5C4E3E;
+  --color-border:      rgba(245,166,35,0.15);
+  --color-border-hover:rgba(245,166,35,0.4);
+
+  /* Typography */
+  --font-display: 'Playfair Display', 'Georgia', serif;
+  --font-body:    'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+
+  /* Scale */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+  --text-7xl:  4.5rem;
+  --text-8xl:  6rem;
+
+  /* Spacing */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-glow:   0 0 40px rgba(200,51,10,0.3);
+  --shadow-accent: 0 0 30px rgba(245,166,35,0.2);
+  --shadow-card:   0 8px 40px rgba(0,0,0,0.5);
+  --shadow-lg:     0 20px 60px rgba(0,0,0,0.6);
+
+  /* Transitions */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast:   150ms;
+  --duration-base:   300ms;
+  --duration-slow:   500ms;
+  --duration-slower: 800ms;
+
+  /* Layout */
+  --max-width:    1280px;
+  --nav-height:   72px;
+  --section-pad:  var(--space-24);
+}
+
+/* ============================================================
+   BUSINESS CONFIG — Change these for a different restaurant
+   ============================================================
+   --brand-name: "FLAME & CO";
+   --brand-tagline: "Fired up since 1987";
+   etc. (used via JS data-config attribute)
+*/

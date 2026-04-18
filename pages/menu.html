@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu — Smash & Co</title>
+  <meta name="description" content="Explore our full menu of handcrafted smash burgers, combos, sides, drinks, and desserts."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/tokens.css"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/navbar.css"/>
+  <link rel="stylesheet" href="../css/components.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar--transparent">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">🍔</div>
+        <span>SMASH&nbsp;<em style="color:var(--color-accent);">&</em>&nbsp;CO</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../index.html"   class="navbar__link">Home</a></li>
+        <li><a href="../menu.html"    class="navbar__link active">Menu</a></li>
+        <li><a href="about.html"   class="navbar__link">Our Story</a></li>
+        <li><a href="contact.html" class="navbar__link">Contact</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="cart.html" class="btn btn--primary btn--sm">Order Now</a>
+        <button class="navbar__cart" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="navbar__cart-count">0</span>
+        </button>
+        <button class="navbar__menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="navbar__mobile-menu">
+  <a href="../index.html"   class="navbar__mobile-link">Home</a>
+  <a href="../menu.html"    class="navbar__mobile-link">Menu</a>
+  <a href="about.html"   class="navbar__mobile-link">Our Story</a>
+  <a href="contact.html" class="navbar__mobile-link">Contact</a>
+  <div class="navbar__mobile-cta"><a href="cart.html" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;">View Cart →</a></div>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container">
+    <span class="text-label">What's cooking</span>
+    <h1 class="page-header__title">Our <em>Menu</em></h1>
+    <p class="page-header__desc">Handcrafted with obsession. Built for satisfaction. Every item on this menu is a labour of love.</p>
+  </div>
+</header>
+
+<!-- PROMO BANNER (compact) -->
+<div style="background:var(--color-primary);padding:var(--space-4) 0;text-align:center;">
+  <div class="container">
+    <span style="font-size:var(--text-sm);font-weight:600;color:#fff;">
+      ⚡ Combo Deals — Save up to 30% today only! &nbsp;
+      <a href="#combos" style="color:var(--color-accent);text-decoration:underline;">Shop Combos →</a>
+    </span>
+  </div>
+</div>
+
+<!-- MENU SECTION -->
+<main>
+<section class="section">
+  <div class="container">
+
+    <!-- Category Tabs -->
+    <div class="menu-tabs reveal" role="tablist" aria-label="Menu categories" id="category-tabs">
+      <!-- Rendered by JS -->
+    </div>
+
+    <!-- Search -->
+    <div class="reveal" style="margin-bottom:var(--space-8);max-width:400px;">
+      <input
+        type="search"
+        class="form-input"
+        id="menu-search"
+        placeholder="🔍  Search menu..."
+        aria-label="Search menu items"
+        oninput="handleMenuSearch(this.value)"
+      />
+    </div>
+
+    <!-- Menu Grid -->
+    <div class="grid grid-3" id="menu-grid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="menu-empty" style="display:none;text-align:center;padding:var(--space-24) 0;">
+      <div style="font-size:60px;margin-bottom:var(--space-4);">🔍</div>
+      <h3 style="font-family:var(--font-display);font-size:var(--text-2xl);margin-bottom:var(--space-3);">No results found</h3>
+      <p style="color:var(--color-text-muted);">Try a different search term or browse another category.</p>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<!-- FOOTER (simplified) -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="padding-block:var(--space-8);">
+      <span>© 2025 Smash & Co. All rights reserved.</span>
+      <a href="../index.html" style="color:var(--color-accent);">← Back to Home</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/app.js"></script>
+<script>
+let activeCategory = "burgers";
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderCategoryTabs();
+  renderMenuItems("burgers");
+
+  // Hash-based deep linking
+  const hash = window.location.hash.replace("#", "");
+  if (hash && MENU_DATA.categories.find(c => c.id === hash)) {
+    setCategory(hash);
+  }
+});
+
+function renderCategoryTabs() {
+  const container = document.getElementById("category-tabs");
+  container.innerHTML = MENU_DATA.categories.map(cat => `
+    <button
+      class="menu-tab ${cat.id === activeCategory ? 'active' : ''}"
+      onclick="setCategory('${cat.id}')"
+      role="tab"
+      aria-selected="${cat.id === activeCategory}"
+      aria-controls="menu-grid"
+    >
+      ${cat.icon} ${cat.label}
+    </button>
+  `).join("");
+}
+
+function setCategory(id) {
+  activeCategory = id;
+  renderCategoryTabs();
+  document.getElementById("menu-search").value = "";
+  renderMenuItems(id);
+  history.replaceState(null, null, `#${id}`);
+}
+
+function renderMenuItems(category, filter = "") {
+  const grid = document.getElementById("menu-grid");
+  const empty = document.getElementById("menu-empty");
+
+  let items = MENU_DATA.items.filter(i => i.category === category);
+  if (filter) {
+    const q = filter.toLowerCase();
+    items = MENU_DATA.items.filter(i =>
+      i.name.toLowerCase().includes(q) ||
+      (i.description || "").toLowerCase().includes(q)
+    );
+  }
+
+  if (items.length === 0) {
+    grid.innerHTML = "";
+    empty.style.display = "block";
+  } else {
+    empty.style.display = "none";
+    grid.innerHTML = items.map(item => renderProductCard(item)).join("");
+    // Re-observe new elements
+    document.querySelectorAll(".reveal:not(.visible)").forEach(el => {
+      setTimeout(() => el.classList.add("visible"), 50);
+    });
+  }
+}
+
+function handleMenuSearch(value) {
+  renderMenuItems(activeCategory, value);
+  // When searching, search across all categories
+  if (value) {
+    const grid = document.getElementById("menu-grid");
+    const empty = document.getElementById("menu-empty");
+    const q = value.toLowerCase();
+    const items = MENU_DATA.items.filter(i =>
+      i.name.toLowerCase().includes(q) || (i.description || "").toLowerCase().includes(q)
+    );
+    if (items.length === 0) {
+      grid.innerHTML = "";
+      empty.style.display = "block";
+    } else {
+      empty.style.display = "none";
+      grid.innerHTML = items.map(item => renderProductCard(item)).join("");
+    }
+  }
+}
+</script>
+</body>
+</html>

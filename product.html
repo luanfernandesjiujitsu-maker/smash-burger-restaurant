@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produto — Smash & Co</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/tokens.css"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar--scrolled">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">🍔</div>
+        <span>SMASH&nbsp;<em style="color:var(--color-accent);">&</em>&nbsp;CO</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="index.html"   class="navbar__link">Início</a></li>
+        <li><a href="menu.html"    class="navbar__link">Cardápio</a></li>
+        <li><a href="about.html"   class="navbar__link">Nossa História</a></li>
+        <li><a href="contact.html" class="navbar__link">Contato</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="pages/cart.html" class="btn btn--primary btn--sm">View Cart</a>
+        <button class="navbar__cart" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="navbar__cart-count">0</span>
+        </button>
+        <button class="navbar__menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="product-detail">
+  <div class="container">
+
+    <!-- Caminho -->
+    <nav aria-label="Caminho" style="margin-bottom:var(--space-8);font-size:var(--text-sm);color:var(--color-text-faint);">
+      <a href="index.html" style="color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='inherit'">Início</a>
+      <span style="margin:0 var(--space-2);">/</span>
+      <a href="pages/menu.html" style="color:inherit;transition:color 0.2s;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='inherit'">Cardápio</a>
+      <span style="margin:0 var(--space-2);">/</span>
+      <span id="breadcrumb-name" style="color:var(--color-text-muted);">Produto</span>
+    </nav>
+
+    <div class="product-detail__grid">
+
+      <!-- Image -->
+      <div class="product-detail__img-wrap reveal">
+        <div id="product-img" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:200px;background:var(--color-bg-3);">
+          🍔
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="product-detail__info reveal reveal-delay-2">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-4);" id="product-badges">
+          <!-- Badges -->
+        </div>
+
+        <h1 class="product-detail__name" id="product-name">Carregando...</h1>
+
+        <!-- Rating -->
+        <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4);">
+          <span style="color:var(--color-accent);font-size:var(--text-sm);" id="product-stars">★★★★★</span>
+          <span style="font-size:var(--text-sm);color:var(--color-text-muted);" id="product-reviews">(0 avaliações)</span>
+        </div>
+
+        <div class="product-detail__price-row">
+          <span class="product-detail__price" id="product-price">R$0.00</span>
+          <span id="product-old-price" style="font-size:var(--text-lg);color:var(--color-text-faint);text-decoration:line-through;"></span>
+        </div>
+
+        <p class="product-detail__desc" id="product-desc">Carregando descrição...</p>
+
+        <!-- Customiser -->
+        <div class="product-customizer" id="product-customizer" style="display:none;">
+          <div class="product-customizer__title">Escolha o tamanho</div>
+          <div id="product-options">
+            <!-- Options rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Nutrition (example) -->
+        <div style="background:var(--color-bg-2);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5);margin-bottom:var(--space-8);">
+          <div style="font-size:var(--text-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-4);">Informação Nutricional (por porção)</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);text-align:center;" id="nutrition-grid">
+            <div><div style="font-weight:700;color:var(--color-text);">650</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">kcal</div></div>
+            <div><div style="font-weight:700;color:var(--color-text);">42g</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">protein</div></div>
+            <div><div style="font-weight:700;color:var(--color-text);">48g</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">carbs</div></div>
+            <div><div style="font-weight:700;color:var(--color-text);">32g</div><div style="font-size:var(--text-xs);color:var(--color-text-muted);">fat</div></div>
+          </div>
+        </div>
+
+        <!-- Qty + Adicionar ao Carrinho -->
+        <div style="display:flex;gap:var(--space-4);align-items:center;flex-wrap:wrap;">
+          <div class="qty-selector">
+            <button class="qty-selector__btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-selector__val" id="qty-display">1</span>
+            <button class="qty-selector__btn" onclick="changeQty(1)">+</button>
+          </div>
+          <button class="btn btn--primary btn--lg" onclick="addToCart()" style="flex:1;justify-content:center;" id="add-btn">
+            Adicionar ao Carrinho — <span id="add-btn-price">R$0.00</span>
+          </button>
+        </div>
+
+        <a href="pages/cart.html" class="btn btn--accent btn--lg" style="width:100%;justify-content:center;margin-top:var(--space-3);">
+          Ver Carrinho & Finalizar →
+        </a>
+
+        <!-- Tags -->
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-6);padding-top:var(--space-6);border-top:1px solid var(--color-border);">
+          <span style="font-size:var(--text-xs);color:var(--color-text-faint);">Tags:</span>
+          <span id="product-tags"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Produtos -->
+    <div style="margin-top:var(--space-20);">
+      <div class="section-header reveal">
+        <span class="text-label">Você também pode gostar</span>
+        <h2 class="section-title">Mais <em style="font-style:italic;color:var(--color-primary);">Favoritos</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="grid grid-3" id="related-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="padding-block:var(--space-8);">
+      <span>© 2025 Smash & Co. All rights reserved.</span>
+      <a href="pages/menu.html" style="color:var(--color-accent);">← Voltar ao Cardápio</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+let currentItem = null;
+let selectedOption = null;
+let qty = 1;
+
+const badgeMap = {
+  hot:   { cls: "badge--hot",   label: "🔥 Popular" },
+  new:   { cls: "badge--new",   label: "✦ New" },
+  veg:   { cls: "badge--veg",   label: "🌿 Vegan" },
+  spicy: { cls: "badge--spicy", label: "🌶️ Spicy" },
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Get item ID from URL query param
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get("id") || "1");
+  currentItem = MENU_DATA.items.find(i => i.id === id) || MENU_DATA.items[0];
+
+  if (!currentItem) {
+    document.querySelector(".product-detail").innerHTML = "<div style='text-align:center;padding:60px'><h2>Produto not found</h2><a href='menu.html' class='btn btn--primary' style='margin-top:20px'>Voltar ao Cardápio</a></div>";
+    return;
+  }
+
+  renderProduto(currentItem);
+  renderRelated(currentItem);
+  updateAddBtn();
+});
+
+function renderProduto(item) {
+  document.title = `${item.name} — Smash & Co`;
+  document.getElementById("breadcrumb-name").textContent = item.name;
+  document.getElementById("product-name").textContent = item.name;
+  document.getElementById("product-desc").textContent = item.description;
+  document.getElementById("product-img").textContent = item.imgPlaceholder || "🍔";
+  document.getElementById("product-stars").textContent = "★".repeat(Math.round(item.rating || 5)) + "☆".repeat(5 - Math.round(item.rating || 5));
+  document.getElementById("product-reviews").textContent = `(${(item.reviews || 0).toLocaleString()} avaliações)`;
+  document.getElementById("product-price").textContent = `${SITE_CONFIG.currencySymbol}${item.price.toFixed(2)}`;
+
+  if (item.oldPrice) {
+    document.getElementById("product-old-price").textContent = `${SITE_CONFIG.currencySymbol}${item.oldPrice.toFixed(2)}`;
+  }
+
+  // Badges
+  const badgesEl = document.getElementById("product-badges");
+  badgesEl.innerHTML = (item.badges || []).map(b => badgeMap[b] ? `<span class="badge ${badgeMap[b].cls}">${badgeMap[b].label}</span>` : '').join("");
+
+  // Tags
+  const tagsEl = document.getElementById("product-tags");
+  tagsEl.innerHTML = (item.tags || []).map(t => `<span style="font-size:var(--text-xs);color:var(--color-accent);">#${t}</span>`).join(" ");
+
+  // Options
+  if (item.options && item.options.length > 0) {
+    selectedOption = item.options[0];
+    const customizer = document.getElementById("product-customizer");
+    const optionsEl = document.getElementById("product-options");
+    customizer.style.display = "block";
+    optionsEl.innerHTML = item.options.map(opt => `
+      <div class="product-option ${opt === selectedOption ? 'selected' : ''}" onclick="selectOption('${opt}', this)">
+        <div class="product-option__dot"></div>
+        <span style="font-weight:600;">${opt}</span>
+        ${opt === "Duplo" ? `<span style="margin-left:auto;color:var(--color-accent);font-size:var(--text-sm);">+${SITE_CONFIG.currencySymbol}3.00</span>` : ''}
+        ${opt === "Triplo" ? `<span style="margin-left:auto;color:var(--color-accent);font-size:var(--text-sm);">+${SITE_CONFIG.currencySymbol}5.00</span>` : ''}
+      </div>
+    `).join("");
+  }
+}
+
+function selectOption(opt, el) {
+  selectedOption = opt;
+  document.querySelectorAll(".product-option").forEach(o => o.classList.remove("selected"));
+  el.classList.add("selected");
+  updateAddBtn();
+}
+
+function changeQty(delta) {
+  qty = Math.max(1, qty + delta);
+  document.getElementById("qty-display").textContent = qty;
+  updateAddBtn();
+}
+
+function getPrice() {
+  if (!currentItem) return 0;
+  let p = currentItem.price;
+  if (selectedOption === "Duplo") p += 3;
+  if (selectedOption === "Triplo") p += 5;
+  return p * qty;
+}
+
+function updateAddBtn() {
+  const btn = document.getElementById("add-btn-price");
+  if (btn) btn.textContent = `${SITE_CONFIG.currencySymbol}${getPrice().toFixed(2)}`;
+}
+
+function addToCart() {
+  if (!currentItem) return;
+  Cart.add({
+    id: currentItem.id,
+    name: currentItem.name,
+    price: currentItem.price + (selectedOption === "Duplo" ? 3 : selectedOption === "Triplo" ? 5 : 0),
+    option: selectedOption || "Padrão",
+    imgPlaceholder: currentItem.imgPlaceholder,
+    qty,
+  });
+  showToast(`${currentItem.name} adicionado ao carrinho! 🎉`);
+}
+
+function renderRelated(item) {
+  const related = MENU_DATA.items
+    .filter(i => i.category === item.category && i.id !== item.id)
+    .slice(0, 3);
+
+  const grid = document.getElementById("related-grid");
+  grid.innerHTML = related.map(i => renderProdutoCard(i)).join("");
+  initReveal();
+}
+</script>
+</body>
+</html>

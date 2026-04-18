@@ -1,0 +1,119 @@
+/* ============================================================
+   PRINT STYLESHEET — css/print.css
+   A clean printable version of the menu.
+   Add <link rel="stylesheet" href="css/print.css" media="print"/>
+   ============================================================ */
+@media print {
+  /* Hide navigation and interactive elements */
+  .navbar,
+  .navbar__mobile-menu,
+  .hero,
+  .featured-strip,
+  .promo-banner,
+  .newsletter-cta,
+  .footer,
+  .btn,
+  .menu-tabs,
+  input[type="search"],
+  .product-card__quick-add {
+    display: none !important;
+  }
+
+  /* Reset backgrounds */
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-family: Georgia, serif;
+    font-size: 11pt;
+  }
+
+  /* Page header */
+  .page-header {
+    padding-top: 20pt;
+    padding-bottom: 10pt;
+    background: none !important;
+    border-bottom: 2pt solid #111;
+    text-align: left;
+  }
+
+  .page-header__title {
+    font-size: 28pt;
+    color: #111 !important;
+  }
+
+  .page-header__desc { display: none; }
+
+  /* Menu grid — 2 columns for print */
+  .grid-3, .grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12pt !important;
+  }
+
+  /* Product card print styles */
+  .product-card {
+    background: none !important;
+    border: 1pt solid #ccc !important;
+    border-radius: 4pt !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .product-card__img-wrap {
+    aspect-ratio: auto !important;
+    height: 80pt;
+  }
+
+  .product-card__name {
+    font-size: 13pt;
+    color: #111 !important;
+  }
+
+  .product-card__desc {
+    font-size: 9pt;
+    color: #444 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-card__price {
+    font-size: 14pt;
+    color: #111 !important;
+  }
+
+  /* Badges */
+  .badge {
+    background: none !important;
+    border: 1pt solid #999 !important;
+    color: #333 !important;
+    font-size: 7pt;
+  }
+
+  /* Page break between categories */
+  .menu-category-label {
+    page-break-before: auto;
+    color: #111 !important;
+    font-size: 16pt;
+  }
+
+  /* Print header */
+  @page {
+    margin: 15mm;
+    size: A4;
+  }
+
+  /* Print footer with brand info */
+  body::after {
+    content: "Smash & Co · 42 Flame Street, NYC · +1 (555) 123-4567 · smashandco.com";
+    display: block;
+    text-align: center;
+    font-size: 9pt;
+    color: #666;
+    border-top: 1pt solid #ccc;
+    padding-top: 8pt;
+    margin-top: 20pt;
+  }
+}

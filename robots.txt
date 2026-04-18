@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smashandco.com/sitemap.xml
+
+# Block cart and internal pages from indexing
+Disallow: /pages/cart.html
+Disallow: /cart.html

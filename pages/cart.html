@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrinho — Smash & Co</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/tokens.css"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/navbar.css"/>
+  <link rel="stylesheet" href="../css/components.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar--scrolled">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">🍔</div>
+        <span>SMASH&nbsp;<em style="color:var(--color-accent);">&</em>&nbsp;CO</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="../index.html" class="navbar__link">Início</a></li>
+        <li><a href="../menu.html"  class="navbar__link">Cardápio</a></li>
+        <li><a href="about.html"    class="navbar__link">Nossa História</a></li>
+        <li><a href="contact.html"  class="navbar__link">Contato</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <button class="navbar__cart" aria-label="Carrinho" style="border-color:var(--color-accent);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--color-accent);">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="navbar__cart-count has-items" id="contador-nav">0</span>
+        </button>
+        <button class="navbar__menu-toggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="navbar__mobile-menu">
+  <a href="../index.html" class="navbar__mobile-link">Início</a>
+  <a href="../menu.html"  class="navbar__mobile-link">Cardápio</a>
+  <a href="about.html"    class="navbar__mobile-link">Nossa História</a>
+  <div class="navbar__mobile-cta"><a href="../menu.html" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;">Adicionar Mais Itens →</a></div>
+</div>
+
+<main class="cart-page">
+  <div class="container">
+    <div style="margin-bottom:var(--space-8);">
+      <a href="../menu.html" style="color:var(--color-text-muted);font-size:var(--text-sm);display:inline-flex;align-items:center;gap:var(--space-2);transition:color 0.2s;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='var(--color-text-muted)'">
+        ← Continuar Comprando
+      </a>
+      <h1 style="font-family:var(--font-display);font-size:clamp(var(--text-3xl),5vw,var(--text-5xl));margin-top:var(--space-4);">
+        Seu <em style="color:var(--color-primary);font-style:italic;">Pedido</em>
+      </h1>
+    </div>
+
+    <!-- Carrinho vazio -->
+    <div class="cart-empty" id="carrinho-vazio" style="display:none;">
+      <div class="cart-empty__icon">🍔</div>
+      <h2 class="cart-empty__title">Seu carrinho está vazio</h2>
+      <p class="cart-empty__desc">Parece que você ainda não adicionou nada. Vamos resolver isso!</p>
+      <a href="../menu.html" class="btn btn--primary btn--lg">Ver Cardápio</a>
+    </div>
+
+    <!-- Layout do carrinho -->
+    <div class="cart-grid" id="layout-carrinho">
+
+      <!-- Itens -->
+      <div>
+        <div class="cart-items" id="lista-itens"></div>
+        <div style="margin-top:var(--space-6);padding:var(--space-5);background:var(--color-bg-2);border:1px dashed var(--color-border);border-radius:var(--radius-xl);text-align:center;">
+          <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-3);">Quer adicionar mais?</p>
+          <a href="../menu.html" class="btn btn--outline btn--sm">+ Ver Cardápio</a>
+        </div>
+      </div>
+
+      <!-- Resumo do Pedido -->
+      <div class="order-summary" id="resumo-pedido">
+        <h2 class="order-summary__title">Resumo do Pedido</h2>
+        <div class="order-summary__line"><span>Subtotal</span><span id="resumo-subtotal">R$0,00</span></div>
+        <div class="order-summary__line"><span>Entrega</span><span id="resumo-entrega">R$4,99</span></div>
+        <div class="order-summary__line"><span>Taxas (8%)</span><span id="resumo-taxa">R$0,00</span></div>
+        <div class="order-summary__line order-summary__line--total"><span>Total</span><span id="resumo-total">R$0,00</span></div>
+
+        <!-- Cupom -->
+        <div class="promo-input">
+          <input type="text" class="form-input" id="cupom" placeholder="Código de cupom" aria-label="Código de cupom"/>
+          <button class="btn btn--outline btn--sm" onclick="aplicarCupom()">Aplicar</button>
+        </div>
+
+        <!-- Frete grátis -->
+        <div id="banner-frete-gratis" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);font-size:var(--text-sm);color:#4ADE80;margin-bottom:var(--space-6);display:none;">
+          🎉 Você ganhou <strong>frete grátis!</strong>
+        </div>
+        <div id="progresso-frete" style="margin-bottom:var(--space-6);font-size:var(--text-sm);color:var(--color-text-muted);">
+          Adicione mais <strong id="faltando-frete" style="color:var(--color-accent);"></strong> para frete grátis
+        </div>
+
+        <button class="btn btn--primary btn--lg" style="width:100%;justify-content:center;" onclick="handleCheckout()">
+          Finalizar Pedido →
+        </button>
+
+        <div style="text-align:center;margin-top:var(--space-4);">
+          <div style="font-size:var(--text-xs);color:var(--color-text-faint);">🔒 Pagamento seguro · SSL criptografado</div>
+        </div>
+
+        <div style="display:flex;justify-content:center;gap:var(--space-2);margin-top:var(--space-4);">
+          <span style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-1) var(--space-3);font-size:var(--text-xs);color:var(--color-text-muted);">VISA</span>
+          <span style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-1) var(--space-3);font-size:var(--text-xs);color:var(--color-text-muted);">MC</span>
+          <span style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-1) var(--space-3);font-size:var(--text-xs);color:var(--color-text-muted);">AMEX</span>
+          <span style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:var(--space-1) var(--space-3);font-size:var(--text-xs);color:var(--color-text-muted);">PIX</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__bottom" style="padding-block:var(--space-8);">
+      <span>© 2025 Smash & Co. Todos os direitos reservados.</span>
+      <a href="../index.html" style="color:var(--color-accent);">← Voltar ao Início</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/app.js"></script>
+<script>
+const { currencySymbol, deliveryFee, freeDeliveryThreshold, taxRate } = SITE_CONFIG;
+
+function renderizarCarrinho() {
+  const itens = Cart.getItems();
+  const lista = document.getElementById("lista-itens");
+  const vazio = document.getElementById("carrinho-vazio");
+  const layout = document.getElementById("layout-carrinho");
+
+  if (itens.length === 0) {
+    vazio.style.display = "block";
+    layout.style.display = "none";
+    return;
+  }
+  vazio.style.display = "none";
+  layout.style.display = "grid";
+
+  lista.innerHTML = itens.map(item => `
+    <div class="cart-item">
+      <div class="cart-item__img" style="display:flex;align-items:center;justify-content:center;font-size:50px;background:var(--color-bg-3);">
+        ${item.imgPlaceholder || "🍔"}
+      </div>
+      <div class="cart-item__info">
+        <div class="cart-item__name">${item.name}</div>
+        <div class="cart-item__options">${item.option || "Padrão"}</div>
+        <div class="cart-item__price">${currencySymbol}${(item.price * item.qty).toFixed(2)}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-3);">
+        <button class="cart-item__remove" onclick="removerItem(${item.id}, '${item.option}')" aria-label="Remover ${item.name}">×</button>
+        <div class="qty-selector">
+          <button class="qty-selector__btn" onclick="alterarQtd(${item.id}, '${item.option}', ${item.qty - 1})">−</button>
+          <span class="qty-selector__val">${item.qty}</span>
+          <button class="qty-selector__btn" onclick="alterarQtd(${item.id}, '${item.option}', ${item.qty + 1})">+</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  atualizarResumo(itens);
+}
+
+function atualizarResumo(itens) {
+  const subtotal = Cart.getTotal();
+  const taxa = subtotal * taxRate;
+  const entrega = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
+  const total = subtotal + taxa + entrega;
+
+  document.getElementById("resumo-subtotal").textContent = `${currencySymbol}${subtotal.toFixed(2)}`;
+  document.getElementById("resumo-taxa").textContent = `${currencySymbol}${taxa.toFixed(2)}`;
+  document.getElementById("resumo-entrega").textContent = entrega === 0 ? "GRÁTIS" : `${currencySymbol}${entrega.toFixed(2)}`;
+  document.getElementById("resumo-total").textContent = `${currencySymbol}${total.toFixed(2)}`;
+
+  const banner = document.getElementById("banner-frete-gratis");
+  const progresso = document.getElementById("progresso-frete");
+  const faltando = document.getElementById("faltando-frete");
+
+  if (subtotal >= freeDeliveryThreshold) {
+    banner.style.display = "block";
+    progresso.style.display = "none";
+  } else {
+    banner.style.display = "none";
+    progresso.style.display = "block";
+    faltando.textContent = `${currencySymbol}${(freeDeliveryThreshold - subtotal).toFixed(2)}`;
+  }
+
+  const nav = document.getElementById("contador-nav");
+  if (nav) nav.textContent = Cart.getCount();
+}
+
+function removerItem(id, opcao) { Cart.remove(id, opcao); renderizarCarrinho(); }
+function alterarQtd(id, opcao, qtd) { Cart.updateQty(id, opcao, qtd); renderizarCarrinho(); }
+
+function aplicarCupom() {
+  const codigo = document.getElementById("cupom").value.trim().toUpperCase();
+  if (codigo === "SMASH10") { showToast("Cupom aplicado! 10% de desconto 🎉"); }
+  else { showToast("Código de cupom inválido.", "error"); }
+}
+
+function handleCheckout() {
+  if (Cart.getItems().length === 0) { showToast("Adicione itens ao carrinho primeiro!", "error"); return; }
+  showToast("Checkout em breve! 🚀");
+}
+
+document.addEventListener("cart:updated", renderizarCarrinho);
+document.addEventListener("DOMContentLoaded", renderizarCarrinho);
+</script>
+</body>
+</html>
