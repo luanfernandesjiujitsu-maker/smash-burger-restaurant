@@ -35,10 +35,10 @@ const SITE_CONFIG = {
 const MENU_DATA = {
   categories: [
     { id: "burgers",  label: "Burgers",    icon: "🍔" },
-    { id: "combos",   label: "Combos",     icon: "🍟" },
-    { id: "sides",    label: "Acompanhamentos",      icon: "🥗" },
-    { id: "drinks",   label: "Bebidas",     icon: "🥤" },
-    { id: "desserts", label: "Sobremesas",   icon: "🍨" },
+    { id: "combos",   label: "Combos",     icon: "" },
+    { id: "sides",    label: "Acompanhamentos",      icon: "" },
+    { id: "drinks",   label: "Bebidas",     icon: "" },
+    { id: "desserts", label: "Sobremesas",   icon: "" },
   ],
   items: [
     {
@@ -66,7 +66,7 @@ const MENU_DATA = {
       rating: 4.8,
       reviews: 218,
       img: "assets/img/burger-inferno.jpg",
-      imgPlaceholder: "🌶️",
+      imgPlaceholder: "",
       options: ["Simples", "Duplo"],
     },
     {
@@ -81,7 +81,7 @@ const MENU_DATA = {
       rating: 4.9,
       reviews: 89,
       img: "assets/img/burger-truffle.jpg",
-      imgPlaceholder: "👑",
+      imgPlaceholder: "",
       options: ["Simples", "Duplo"],
     },
     {
@@ -95,7 +95,7 @@ const MENU_DATA = {
       rating: 4.7,
       reviews: 156,
       img: "assets/img/burger-garden.jpg",
-      imgPlaceholder: "🌿",
+      imgPlaceholder: "",
       options: ["Simples", "Duplo"],
     },
     {
@@ -109,7 +109,7 @@ const MENU_DATA = {
       rating: 4.8,
       reviews: 274,
       img: "assets/img/burger-bbq.jpg",
-      imgPlaceholder: "🤠",
+      imgPlaceholder: "",
       options: ["Simples", "Duplo"],
     },
     {
@@ -123,7 +123,7 @@ const MENU_DATA = {
       rating: 4.6,
       reviews: 112,
       img: "assets/img/burger-mushroom.jpg",
-      imgPlaceholder: "🍄",
+      imgPlaceholder: "",
       options: ["Simples", "Duplo"],
     },
     // COMBOS
@@ -139,7 +139,7 @@ const MENU_DATA = {
       rating: 4.9,
       reviews: 421,
       img: "assets/img/combo-classic.jpg",
-      imgPlaceholder: "🍔🍟🥤",
+      imgPlaceholder: "🍔",
     },
     {
       id: 8,
@@ -153,7 +153,7 @@ const MENU_DATA = {
       rating: 4.8,
       reviews: 187,
       img: "assets/img/combo-inferno.jpg",
-      imgPlaceholder: "🌶️🍟",
+      imgPlaceholder: "",
     },
     // SIDES
     {
@@ -167,7 +167,7 @@ const MENU_DATA = {
       rating: 4.9,
       reviews: 503,
       img: "assets/img/sides-truffle-fries.jpg",
-      imgPlaceholder: "🍟",
+      imgPlaceholder: "",
     },
     {
       id: 10,
@@ -180,7 +180,7 @@ const MENU_DATA = {
       rating: 4.7,
       reviews: 289,
       img: "assets/img/sides-onion-rings.jpg",
-      imgPlaceholder: "⭕",
+      imgPlaceholder: "",
     },
     {
       id: 11,
@@ -193,7 +193,7 @@ const MENU_DATA = {
       rating: 4.5,
       reviews: 98,
       img: "assets/img/sides-slaw.jpg",
-      imgPlaceholder: "🥗",
+      imgPlaceholder: "",
     },
     // DRINKS
     {
@@ -207,7 +207,7 @@ const MENU_DATA = {
       rating: 4.8,
       reviews: 211,
       img: "assets/img/drink-lemonade.jpg",
-      imgPlaceholder: "🍋",
+      imgPlaceholder: "",
     },
     {
       id: 13,
@@ -220,7 +220,7 @@ const MENU_DATA = {
       rating: 4.9,
       reviews: 378,
       img: "assets/img/drink-shake.jpg",
-      imgPlaceholder: "🥛",
+      imgPlaceholder: "",
     },
     // DESSERTS
     {
@@ -234,7 +234,7 @@ const MENU_DATA = {
       rating: 4.9,
       reviews: 134,
       img: "assets/img/dessert-sundae.jpg",
-      imgPlaceholder: "🍨",
+      imgPlaceholder: "",
     },
   ],
 };
@@ -385,7 +385,7 @@ function renderTestimonialCard(t) {
       <p class="testimonial-card__text">${t.text}</p>
       <div class="testimonial-card__author">
         <div class="testimonial-card__avatar" style="display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--color-surface);">
-          👤
+          U
         </div>
         <div>
           <div class="testimonial-card__name">${t.author}</div>
